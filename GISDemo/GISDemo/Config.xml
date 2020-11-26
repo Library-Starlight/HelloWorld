@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Config>
+  <Url>GWGIS/HTML/GISDemoBigData.html</Url>
+  <Style>59532e579332b59fa048e06b3138e465</Style>
+  <Center>113.55649,22.183059</Center>
+  <Zoom>10</Zoom>
+  <Boundary>
+    <NorthEast></NorthEast>
+    <SouthWest></SouthWest>
+  </Boundary>
+  <Project>TestBigData</Project>
+</Config>

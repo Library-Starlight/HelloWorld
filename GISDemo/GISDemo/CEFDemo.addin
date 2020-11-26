@@ -1,0 +1,36 @@
+<AddIn name        = "CEFDemo"
+       author      = "cgr"
+       copyright   = "prj:///doc/copyright.txt"
+       url         = ""
+       description = "Display WebBrowser">
+
+  <Manifest>
+    <Identity name = "CEFDemo"/>
+  </Manifest>
+
+  <!--  CEFDemo.dll就是本项目编译出来的插件动态库 -->
+  <Runtime>
+    <Import assembly="CEFDemo.dll"/>
+  </Runtime>
+
+  <!--  在“查看”菜单栏添加页面菜单项 -->
+  <Path name = "/SharpDevelop/Workbench/MainMenu/Integrate">
+    <MenuItem id = "ShowAlarmCenter.CEFDemo.WPFCefPage"
+               icon = "Icons.16x16.DesignPanel"
+		          label = "WPFCEFDemo"
+		          class = "PageMenuCommand(CEFDemo.WPFCefPage)"/>
+  </Path>
+  <Path name = "/SharpDevelop/Workbench/MainMenu/Integrate">
+    <MenuItem id = "ShowAlarmCenter.CEFDemo.WinformCefPage"
+               icon = "Icons.16x16.DesignPanel"
+		          label = "WinFromCEFDemo"
+		          class = "PageMenuCommand(CEFDemo.WinformCefPage)"/>
+  </Path>
+  <Path name = "/SharpDevelop/Workbench/MainMenu/Integrate">
+    <MenuItem id = "ShowAlarmCenter.CEFDemo.DaYunMapPage"
+               icon = "Icons.16x16.DesignPanel"
+		          label = "大运地图界面"
+		          class = "PageMenuCommand(CEFDemo.DaYunMapPage)"/>
+  </Path>
+</AddIn>
+
