@@ -1,0 +1,488 @@
+syntax = "proto3"; 
+import "google/protobuf/empty.proto";
+import "common.proto"; 
+option csharp_namespace = "AlarmCenterGrpcServiceLibrary";
+  
+package AlarmCenterGrpcServiceLibrary;
+ 
+service AlarmCenter {  
+	rpc Listen (google.protobuf.Empty) returns (BaseResult); 
+	rpc Login (LoginModel) returns (BaseResult);
+	rpc DllLogin (ByteArrDefine) returns (DllLoginResult);
+	rpc GetClientIPAndPort (google.protobuf.Empty) returns (BaseResult);
+	rpc DllRegisterData (StringResult) returns (BoolDefine);
+	rpc CloseSession (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc StopDataCenter (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc GetApplicationRootPath (google.protobuf.Empty) returns (BaseResult);
+	rpc IsRun (google.protobuf.Empty) returns (BoolDefine); 
+	rpc GetEquipStateFromEquipNo (IntegerDefine) returns (EquipStateReply);
+	rpc GetEquipStateFromEquipNoList (StringResult) returns (StringResult);
+	rpc GetEquipStateDict (google.protobuf.Empty) returns (GetEquipStateDictReply);
+	rpc GetYCValue (GetYCAlarmStateRequest) returns (BaseResult);
+	rpc GetYCValueDictFromEquip (IntegerDefine) returns (BaseResult);
+	rpc GetYCAlarmState (GetYCAlarmStateRequest) returns (BoolDefine);
+	rpc GetYCAlarmStateDictFromEquip (IntegerDefine) returns (BaseResult);
+	rpc GetYXValue (GetYXValueRequest) returns (StringResult);
+	rpc GetYXValueDictFromEquip (IntegerDefine) returns (BaseResult);
+	rpc GetYXAlarmState (GetYXAlarmStateRequest) returns (BoolDefine);
+	rpc GetYXEvt01 (GetYXEvt01Request) returns (BaseResult);
+	rpc GetYXEvt10 (GetYXEvt01Request) returns (BaseResult);
+	rpc GetYXAlarmStateDictFromEquip (IntegerDefine) returns (BaseResult);
+	rpc GetCurveData (GetCurveDataRequest) returns (ByteArrDefine);
+	rpc GetCurveData1 (GetCurveData1Request) returns (ByteArrDefine);
+	rpc GetDataFromCurve (GetDataFromCurveRequest) returns (StringResult);
+	rpc GetChangedDataFromCurveAsync (GetChangedDataFromCurveAsyncRequest) returns (StringResult);
+	rpc SetEquipDebug (SetEquipDebugRequest) returns (google.protobuf.Empty); 
+	rpc GetEquipDebugState (IntegerDefine) returns (BoolDefine);  
+	rpc SetParm (SetParmRequest) returns(google.protobuf.Empty);  
+	rpc SetParmEx (SetParmRequest) returns(google.protobuf.Empty);   
+	rpc SetParmCallback (SetParmRequest) returns(stream StringResult);  
+	rpc SetParm_1 (SetParm_1Request) returns(google.protobuf.Empty); 
+	rpc SetParm1 (SetParm1Request) returns(google.protobuf.Empty); 
+	rpc SetParm1_1 (SetParm1_1Request) returns(google.protobuf.Empty); 
+	rpc SetParm2 (SetParm2Request) returns(google.protobuf.Empty); 
+	rpc SetParm2_1 (SetParm2_1Request) returns(google.protobuf.Empty);
+	rpc SetParm2_1Ex (BaseResult) returns(google.protobuf.Empty);
+	rpc HaveYCP (IntegerDefine) returns (BoolDefine);
+	rpc HaveYXP (IntegerDefine) returns (BoolDefine);
+	rpc HaveSet (IntegerDefine) returns (BoolDefine); 
+	rpc HaveHistoryCurve (HaveHistoryCurveRequest) returns (BoolDefine); 
+	rpc GetEquipListStr (google.protobuf.Empty) returns (BaseResult);
+	rpc GetYCPListStr (IntegerDefine) returns(BaseResult);
+	rpc GetYXPListStr (IntegerDefine) returns(BaseResult);
+	rpc GetSetListStr (IntegerDefine) returns (BaseResult);
+	rpc GetYCAlarmComments (HaveHistoryCurveRequest) returns (BaseResult);
+	rpc GetYXAlarmComments (HaveHistoryCurveRequest) returns (BaseResult);
+	rpc GetVersionInfo (google.protobuf.Empty) returns (BaseResult);
+	rpc GetTotalRTYCItemData1 (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc GetChangedRTYCItemData1 (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc GetChangedRTYXItemData1 (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc GetTotalRTEquipItemData1 (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc GetChangedRTEquipItemData1 (google.protobuf.Empty) returns (google.protobuf.Empty); 
+	rpc GetAddRTEquipItemData (google.protobuf.Empty) returns (IntegerArrReply);
+	rpc GetDelRTEquipItemData (google.protobuf.Empty) returns (IntegerArrReply);
+	rpc GetEditRTEquipItemData (google.protobuf.Empty) returns (IntegerArrReply);
+	rpc GetEquipTreeXMLFile (google.protobuf.Empty) returns (ByteArrDefine); 
+	rpc SendSMS (SendSMSRequest) returns (BoolDefine);
+	rpc ReadNextBuffer (google.protobuf.Empty) returns (BoolDefine);
+	rpc GetCurrentBuffer (google.protobuf.Empty) returns (ByteArrDefine);
+	rpc FirstGetRealEventItem1 (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc GetAddRealEventItem1 (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc GetDelRealEventItem1 (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc DeleteDebugInfo (IntegerDefine) returns (google.protobuf.Empty); 
+	rpc DeleteDebugInfoEx (ConfirmedRealTimeEventItemRequest) returns (google.protobuf.Empty);  
+	rpc ConfirmedRealTimeEventItem (StringResult) returns (google.protobuf.Empty);   
+	rpc AddMessage (AddMessageRequest) returns (google.protobuf.Empty); 
+	rpc ResetEquips (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc ResetEquipsEx (StringResult) returns (google.protobuf.Empty); 
+	rpc ResetSetParmTable (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc ResetEquipmentLinkage (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc ResetProcTimeManage (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc ResetGWDataRecordItems (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc ResetDelayActionPlan (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc ZCAddReset (BaseResult) returns (google.protobuf.Empty);
+	rpc ZCEditReset (BaseResult) returns (google.protobuf.Empty);
+	rpc ZCDelReset (BaseResult) returns (google.protobuf.Empty); 
+	rpc FirstGetRealZCItem (google.protobuf.Empty) returns (FirstGetRealZCItemReply); 
+	rpc GetChangedZCItem (google.protobuf.Empty) returns (FirstGetRealZCItemReply);
+	rpc GetDeleteZCItem (google.protobuf.Empty) returns (FirstGetRealZCItemReply);  
+	rpc SendImageToSvr (SendImageToSvrRequest) returns (google.protobuf.Empty); 
+	rpc GetImageFromSvr (BaseResult) returns (ByteArrDefine);
+	rpc AddWeihuRecord4ZC (AddWeihuRecord4ZCRequest) returns (BoolDefine);
+	rpc RemoveWeihuRecord4ZC (LongDefine) returns (BoolDefine);
+	rpc SendPlanImageToSvr (SendPlanImageToSvrRequest) returns (google.protobuf.Empty);
+	rpc GetPlanImageFromSvr (BaseResult) returns (ByteArrDefine);
+	rpc GetPlanImageFromSvrEx (google.protobuf.Empty) returns (StringArrDefine);
+	rpc IsPlanFileExist (BaseResult) returns (BoolDefine);
+	rpc GetName2SF (google.protobuf.Empty) returns (BaseResult);
+	rpc GetUserName2SF (google.protobuf.Empty) returns (BaseResult);
+	rpc GetSystemGUID (google.protobuf.Empty) returns (BaseResult);
+	rpc SetEquipNm (SetEquipNmDefine) returns (google.protobuf.Empty);
+	rpc SetEquipNmEx (SetYcpNmRequest) returns (google.protobuf.Empty);
+	rpc SetYxpNm (SetYxpNmRequest) returns (google.protobuf.Empty);
+	rpc SetYcpNm (SetYxpNmRequest) returns (google.protobuf.Empty);
+	rpc MResetYcYxNo (MResetYcYxNoRequest) returns (google.protobuf.Empty);
+	rpc Support3D (google.protobuf.Empty) returns (BoolDefine);
+	rpc SupportSJFX (google.protobuf.Empty) returns (BoolDefine);
+	rpc SupportZCGL (google.protobuf.Empty) returns (BoolDefine);
+	rpc SupportTGKZ (google.protobuf.Empty) returns (BoolDefine);
+	rpc SupportDDCK (google.protobuf.Empty) returns (BoolDefine);
+	rpc SupportZXSJ (google.protobuf.Empty) returns (BoolDefine);
+	rpc SupportNYGL (google.protobuf.Empty) returns (BoolDefine);
+	rpc SupportYAGL (google.protobuf.Empty) returns (BoolDefine);
+	rpc SupportDPHD (google.protobuf.Empty) returns (BoolDefine);
+	rpc SupportBIM (google.protobuf.Empty) returns (BoolDefine);
+	rpc SupportVOICE (google.protobuf.Empty) returns (BoolDefine);
+	rpc SupportQRCode (google.protobuf.Empty) returns (BoolDefine);
+	rpc IsNeuTral (google.protobuf.Empty) returns (BoolDefine);
+	rpc IsHotStandby (google.protobuf.Empty) returns (BoolDefine);
+	rpc GetHotStandbyIP (google.protobuf.Empty) returns (BaseResult);
+	rpc IsHotStandbyListenState (google.protobuf.Empty) returns (BoolDefine);
+	rpc GetPropertyFromPropertyService (GetPropertyFromPropertyServiceRequest) returns (BaseResult);
+	rpc SetPropertyToPropertyService (GetPropertyFromPropertyServiceRequest) returns (google.protobuf.Empty);
+	rpc SetInterScreenID (IntegerDefine) returns (google.protobuf.Empty); 
+	rpc OpenPageInMultiScreens (OpenPageInMultiScreensRequest) returns (google.protobuf.Empty); 
+	rpc SetGUID (BaseResult) returns (google.protobuf.Empty);
+	rpc AddChangedEquip (ChangedEquip) returns (google.protobuf.Empty);
+	rpc AddChangedEquipList (StringResult) returns (google.protobuf.Empty);
+	rpc GetSiBState (google.protobuf.Empty) returns (BoolDefine);  
+	rpc SetVCtrol (SetVCtrolRequest) returns (SetVCtrolReply); 
+	rpc SetVCtrolEx (SetVCtrol1Request) returns (SetVCtrolReply); 
+	rpc GetHFString (google.protobuf.Empty) returns (StringArrDefine); 
+	rpc GetXunfeiAPPID (google.protobuf.Empty) returns (BaseResult); 
+	rpc KickClient (BaseResult) returns (BoolDefine); 
+	rpc KickClientEx (NotifyLoginUserOffLineRequest) returns (google.protobuf.Empty); 
+	rpc NotifyRoleUserOffLine (NotifyRoleUserOffLineRequest) returns (google.protobuf.Empty); 
+	rpc NotifyLoginUserOffLine (NotifyLoginUserOffLineRequest) returns (google.protobuf.Empty); 
+	rpc ShowMsg2GUID (ShowMsg2GUIDRequest) returns (google.protobuf.Empty); 
+	rpc GetImageFromSvr1 (GetImageFromSvr1Request) returns (ByteArrDefine); 
+	rpc SetWuBao (SetWuBaoRequest) returns (BoolDefine); 
+	rpc SetNoAlarm (SetNoAlarmRequest) returns (BoolDefine); 
+	rpc DoExProcSetParm (DoExProcSetParmRequest) returns (google.protobuf.Empty); 
+	rpc Confirm2NormalState (Confirm2NormalStateRequest) returns (BoolDefine); 
+	rpc LockSetItem (LockSetItemRequest) returns (BoolDefine); 
+	rpc UnLockSetItem (LockSetItemRequest) returns (BoolDefine); 
+	rpc GetSetItemDesc (GetSetItemDescRequest) returns (BaseResult); 
+	rpc GetAllPlanImageName (google.protobuf.Empty) returns (StringArrDefine);
+	rpc CreateQrCode2Jpeg (BaseResult) returns (ByteArrDefine);
+	rpc CreateQrCode4Owner (BaseResult) returns (ByteArrDefine);
+	rpc CreateQrCode4Visitor (CreateQrCode4VisitorParm) returns (ByteArrDefine);
+	rpc CreateQrCode4Equip (CreateQrCode4EquipParm) returns (ByteArrDefine);
+	rpc QRScan4Equip (QRScan4EquipParm) returns (BoolDefine);
+	rpc QRScan4Equip1 (QRScan4Equip1Parm) returns (BaseResult);
+	rpc GetTotalRTYXItemData (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc GetChangedRTYXItemData (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc DoSetParmFromString (BaseResult) returns (google.protobuf.Empty);
+	rpc GetValueFromExpression (BaseResult) returns (StringResult);
+	rpc GetTotalRTYXItemData1 (google.protobuf.Empty) returns (google.protobuf.Empty); 
+	rpc GetYXPListByEquipNo (StringResult) returns (StringResult);  
+	rpc GetYCPListByEquipNo (StringResult) returns (StringResult);   
+	rpc SetHistoryStorePeriod (IntegerDefine) returns (google.protobuf.Empty); 
+	rpc GetHistoryStorePeriod (google.protobuf.Empty) returns (BaseResult); 
+} 
+
+message DllLoginRequest{
+	repeated bytes dataResult=1;
+}  
+message EquipStateReply{
+  EquipState result=1; 
+}
+enum EquipState{
+  NoCommunication = 0;
+  CommunicationOK = 1;
+  HaveAlarm = 2;
+  HaveSetParm = 3;
+  Initial = 4;
+  CheFang = 5;
+}
+message GetEquipStateDictReply{
+  string result=1;
+} 
+message YCValueRequest{
+  int32 iEquipNo=1;
+  int32 iYcpNo=2;
+} 
+message GetYCAlarmStateRequest{
+  int32 iEquipNo=1;
+  int32 iYcpNo=2;
+} 
+message IntegerArrReply{
+  repeated int32 result=1;
+}
+message GetYXValueRequest{
+  int32 iEquipNo=1;
+  int32 iYxpNo=2;
+} 
+message GetYXAlarmStateRequest{
+  int32 iEquipNo=1;
+  int32 iYxpNo=2;
+}
+message GetYXEvt01Request{
+  int32 iEquipNo=1;
+  int32 iYxpNo=2;
+} 
+message GetCurveDataRequest{
+  string d=1;
+  int32 eqpno=2;
+  int32 ycno=3;
+} 
+message GetCurveData1Request{
+  string d=1;
+  int32 eqpno=2;
+  int32 ycyxno=3;
+  string type=4;
+}
+message GetDataFromCurveRequest{
+  string DTList=1;
+  int32 stano=2;
+  int32 eqpno=3;
+  int32 ycyxno=4;
+  string type=5;
+} 
+message GetChangedDataFromCurveAsyncRequest{
+  string bgn=1;
+  string end=2;
+  int32 stano=3;
+  int32 eqpno=4; 
+  int32 ycyxno=5;
+  string type=6;
+}
+message SetEquipDebugRequest{
+  int32 iEquipNo=1;
+  bool bFlag=2;
+}
+
+message SetParm_1Request{
+  int32 EquipNo=1; 
+  string strCMD1=2; 
+  string strCMD2=3; 
+  string strCMD3=4; 
+  string strUser=5; 
+  bool bShowDlg=6;
+
+}
+message SetParm1Request{
+  int32 EquipNo=1; 
+  int32 SetNo=2; 
+  string strUser=3; 
+}
+message SetParm2Request{
+  int32 EquipNo=1;
+  string strCMD1=2;
+  string strCMD2=3;
+  string strCMD3=4;
+  string strType=5;
+  string strUser=6;
+}
+message SetParm2_1Request{
+  int32 EquipNo=1;
+  string strCMD1=2;
+  string strCMD2=3;
+  string strCMD3=4;
+  string strType=5;
+  string strUser=6;
+  bool bShowDlg=7;
+}
+
+message FirstGetRealZCItemReply{
+  repeated WcfZCItem result=1; 
+  message WcfZCItem{
+	string ZCID=1;
+	string ZCName=2;
+	int32 ZCDay=3;
+  }
+}
+message HaveHistoryCurveRequest{
+  int32 EquipNo=1; 
+  int32 YCPNo=2; 
+}
+
+message SendSMSRequest{
+  string TelNumber=1; 
+  string msg=2; 
+}
+message ConfirmedRealTimeEventItemRequest{
+  WcfRealTimeEventItem item=1; 
+  message WcfRealTimeEventItem{
+	 bool bConfirmed=1; 
+	 string User_Confirmed=2; 
+	 string Dt_Confirmed=3; 
+	 int32 Level=4 ;
+	 string EventMsg=5; 
+	 string Proc_advice_Msg=6; 
+	 string Wavefile=7; 
+	 string Related_pic=8; 
+	 string m_related_video=9; 
+	 string m_ZiChanID=10; 
+	 string m_PlanNo=11; 
+	 int32 Equipno=12; 
+	 string Type=13; 
+	 string Ycyxno=14; 
+	 string Time=15; 
+  }
+}
+
+message SetParm1_1Request{
+  int32 EquipNo=1; 
+  int32 SetNo=2; 
+  string strValue=3; 
+  string strUser=4; 
+  bool bShowDlg=5; 
+}
+message GetSetItemDescRequest{
+  int32 iEquipNo=1;
+  int32 iSetNo=2; 
+} 
+message GetPropertyFromPropertyServiceRequest{
+  string PropertyName=1;
+  string NodeName=2;
+  string DefaultValue=3;
+} 
+message AddMessageRequest{
+  MessageLevel level=1;
+  string msgstr=2;
+  int32 equipno=3;
+  bool CanRepeat =4;
+  enum MessageLevel{ 
+	Info = 0;
+	Wubao = 1;
+	SpecalInfo = 2;
+	Debug = 3;
+	SetParm = 4;
+	ZiChan = 5;
+	Warn = 6;
+	Error = 7;
+	Fatal = 8;
+  }
+}
+message LockSetItemRequest{
+  string UserNm=1;
+  int32 iEquipNo=2;
+  int32 iSetNo=3;
+  string Client_Instance_GUID=4;
+}
+message Confirm2NormalStateRequest{
+  int32 iEqpNo=1;
+  string sYcYxType=2;
+  int32 iYcYxNo=3;
+}
+message SetYxpNmRequest{
+  int32 EquipNo=1;
+  int32 YcpNo=2;
+  string Nm=3;
+}
+
+message MResetYcYxNoRequest{
+  int32 EquipNo=1;
+  string sType=2;
+  int32 YcYxNo=3;
+}
+message DoExProcSetParmRequest{
+  string ModuleNm=1;
+  string cmd1=2;
+  string cmd2=3;
+  string cmd3=4;
+}
+message OpenPageInMultiScreensRequest{
+  string PageNm=1;
+  string multiScreens=2;
+  bool IsAutoOpen=3;
+  bool DWAction=4;
+  string infoConfig=5;
+  bool bStopPageCycle=6;
+}
+message SendImageToSvrRequest{
+  string ZCID=1;
+  repeated bytes bs=2;
+}
+message AddWeihuRecord4ZCRequest{
+  string ZCID=1;
+  string Name=2;
+  string RecordStr=3;
+  string Pictures=4;
+}
+message SetNoAlarmRequest{
+  int32 eqpno=1;
+  string type=2;
+  int32 ycyxno=3;
+}
+message SendPlanImageToSvrRequest{
+  int32 ID=1;
+  repeated bytes bs=2;
+}
+message SetWuBaoRequest{
+  int32 eqpno=1;
+  string type=2;
+  int32 ycyxno=3;
+} 
+message LongRequest{
+  int64 ID=1;
+}
+message SetEquipNmDefine{
+  int32 EquipNo=1;
+  string Nm=2;
+}
+message SetYcpNmRequest{
+  int32 EquipNo=1;
+  int32 YcpNo=2;
+  string Nm=3;
+}
+message AddChangedEquipRequest{
+  ChangedEquip EqpList=1; 
+} 
+message ChangedEquip{
+	  int32 iStaNo=1;
+	  int32 iEqpNo=2;
+	  ChangedEquipState State=3; 
+	  enum ChangedEquipState{
+		Add = 0;
+		Delete = 1;
+		Edit = 2;
+	  }
+  }
+message SetVCtrolRequest{
+  repeated bytes bVoices=1;
+  string UserNm=2;
+}
+message SetVCtrolReply{
+  WcfVoiceItem result=1;
+  message WcfVoiceItem{
+	bool Result=1;
+	string Vstring=2;
+  }
+}
+message SetVCtrol1Request{
+  string csVoice=1;
+  string UserNm=2;
+}
+
+message NotifyLoginUserOffLineRequest{
+  string msg=1;
+  string UserNm=2;
+}
+message NotifyRoleUserOffLineRequest{
+  string msg=1;
+  string RoleNm=2;
+}
+message ShowMsg2GUIDRequest{
+  string msg=1;
+  string GUID=2;
+}
+message GetImageFromSvr1Request{
+  string path=1;
+  string ImageNm=2;
+}  
+message CreateQrCode4VisitorParm{
+	string VisitorNm=1;
+	string OwnerNm=2;
+	repeated EquipSetInfo ListEquipSetInfo=3;  
+}
+message EquipSetInfo{
+	int32 iEquiNo=1;
+	int32 iSetNo=2;
+	string csValue=3;
+}
+message CreateQrCode4EquipParm{
+	string EqpNo=1;
+	string ZhiChanNo=2;
+	repeated EquipSetInfo ListEquipSetInfo=3;  
+}
+message QRScan4EquipParm{
+	string UserNm=1;
+	string QRContent=2;
+}
+message QRScan4Equip1Parm{
+	string UserNm=1;
+	string QRContent=2;
+	string RtnStr=3;
+} 
+message DllLoginResult{
+	DllLoginEnum Result=1;
+}
+enum DllLoginEnum{
+	OK = 0;
+	ServerNoStart = 1;
+	OverClientConnectMax = 2;
+	CertificateError = 3;
+	OtherError = 4;
+}

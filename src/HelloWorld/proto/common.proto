@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option csharp_namespace = "AlarmCenterGrpcServiceLibrary";
+
+package AlarmCenterGrpcServiceLibrary; 
+message BoolDefine{
+	bool result=1;
+}
+enum ClientType{
+  WinPC = 0;
+  Linux = 1;
+  Mac = 2;
+  WebServer = 3;
+  iPhone = 4;
+  iPad = 5;
+  iPod = 6;
+  WP = 7;
+  Android = 8;
+  Dll = 9;
+}
+message LoginModel{
+  string User=1;
+  string Pwd=2;
+  ClientType CT=3;
+  bool bRetry=4; 
+}
+message BaseResult{
+  string result=1;
+  int32  code=2;
+  string description=3;
+}
+message IntegerDefine{
+  int32 result=1;
+}
+message StringArrDefine{
+  repeated string result=1;
+}
+
+message ByteArrDefine{
+  repeated bytes result=1;
+}
+message LongDefine{
+  int64 result=1;  
+}
+message StringResult{
+	string result=1;
+}
+message SetParmRequest{
+  int32 EquipNo=1;
+  string strCMD1=2;
+  string strCMD2=3;
+  string strCMD3=4;
+  string strUser=5;
+  string requestId=6;
+} 

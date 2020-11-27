@@ -1,0 +1,74 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";  
+import "common.proto";
+option csharp_namespace = "AlarmCenterGrpcServiceLibrary"; 
+package AlarmCenterGrpcServiceLibrary; 
+// The greeting service definition.
+service AlarmCenterDatabase {
+  rpc GetDataTableOfEquip (google.protobuf.Empty) returns (DataTableReply);
+  rpc GetObjectFromSQL (StringRequest) returns (GetObjectFromSQLReply);
+  rpc GetDataTableOfYCP (EquipStaRequest) returns (DataTableReply);  
+  rpc GetDataTableOfYXP (EquipStaRequest) returns (DataTableReply); 
+  rpc GetDataTableOfSetParm (EquipStaRequest) returns (DataTableReply);
+  rpc GetDataTableFromSQL (StringRequest) returns (DataTableReply);
+  rpc GetDataTableFromSQLEx (StringRequest) returns (google.protobuf.Empty);
+  rpc GetDataTableFromSQLEx1 (StringRequest) returns (google.protobuf.Empty); 
+  rpc GetDataAdapter (StringRequest) returns (google.protobuf.Empty);
+  rpc SaveDataTableWithDataAdapter (DataTableReply) returns (google.protobuf.Empty);
+  rpc ExecuteSQL (StringRequest) returns (IntegerRequest);
+  rpc ExecuteInsertSQL (ExecuteInsertSQLParm) returns (IntegerRequest);
+  rpc ExecuteSQLsWithTransaction (StringArrRequest) returns (google.protobuf.Empty);
+  rpc Listen (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc Login (LoginModel) returns (google.protobuf.Empty);
+  rpc CloseSession (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc DataRecordQueryFromXML (DataRecordQueryFromXMLRequest) returns (BaseResult);
+  rpc OpenReadFromFile (StringRequest) returns (ByteArrRequest);
+  rpc ReadAllBytesFromFile (StringRequest) returns (ByteArrRequest);  
+  rpc ReadNextBuffer (google.protobuf.Empty) returns (BoolDefine);
+  rpc GetCurrentBuffer (google.protobuf.Empty) returns (ByteArrRequest);
+  //rpc SetGUID (StringRequest) returns (google.protobuf.Empty);
+  rpc GetDatabaseType (google.protobuf.Empty) returns (GetDatabaseTypeReply); 
+  rpc GetDataPagination (StringRequest) returns (BaseResult);
+}
+message DataTableReply{
+	string data=1;
+}
+message StringRequest{
+	string strSQL=1;
+}
+message GetObjectFromSQLReply{
+	string object=1;
+}
+message EquipStaRequest{
+	int32 sta_no=1;
+	int32 equip_no=2;
+}
+message IntegerRequest{
+	int32 result=1;
+}
+message StringArrRequest{
+	repeated string  request=1;
+}
+message DataRecordQueryFromXMLRequest{
+	string dicEquipYcYxNo=1;
+	string bgnT=2;
+	string endT=3;
+}
+ 
+message GetDatabaseTypeReply{
+  DatabaseType databaseType=1;
+  enum DatabaseType{
+	Access = 0;
+	SQLServer = 1;
+	SQLite = 2;
+	MySql = 3;
+	ODBC = 4;
+  }
+} 
+message ByteArrRequest{
+	repeated bytes data=1;
+} 
+message ExecuteInsertSQLParm{
+	string strSql=1;
+	string tableName=2;
+}

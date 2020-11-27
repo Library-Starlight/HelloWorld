@@ -1,0 +1,10 @@
+syntax = "proto3"; 
+import "google/protobuf/empty.proto"; 
+option csharp_namespace = "AlarmCenterGrpcServiceLibrary"; 
+package AlarmCenterGrpcServiceLibrary; 
+// The MultiStation service definition.
+service MultiStation {
+   	rpc Listen (google.protobuf.Empty) returns (google.protobuf.Empty);
+	rpc Connect (google.protobuf.Empty) returns (google.protobuf.Empty); 
+}
+ 

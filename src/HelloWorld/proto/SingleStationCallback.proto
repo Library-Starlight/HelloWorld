@@ -1,0 +1,19 @@
+syntax = "proto3"; 
+import "google/protobuf/empty.proto";
+import "common.proto";  
+option csharp_namespace = "AlarmCenterGrpcServiceLibrary"; 
+package AlarmCenterGrpcServiceLibrary; 
+service SingleStationCallback { 
+  rpc GetTotalRTEquipItemData (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc GetTotalRTYCItemData (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc GetTotalRTYXItemData (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc GetChangedRTEquipItemData (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc GetChangedRTYCItemData (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc GetChangedRTYXItemData (google.protobuf.Empty) returns (google.protobuf.Empty); 
+  rpc SetParm (SetParmRequest) returns (google.protobuf.Empty);   
+
+  rpc ReadNextBuffer (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc GetCurrentBuffer (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc DllRegisterData (StringResult) returns (BoolDefine);
+  rpc SetVariables2Null (google.protobuf.Empty) returns (google.protobuf.Empty);  
+}  

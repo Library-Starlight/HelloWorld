@@ -5,4 +5,41 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Google.Protobuf" Version="3.14.0" />
+    <PackageReference Include="Grpc.Net.ClientFactory" Version="2.33.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
+    <PackageReference Include="NetMQ" Version="4.0.1.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="NLog" Version="4.7.5" />
+    <PackageReference Include="protobuf-net" Version="3.0.62" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AlarmCenterGrpc.Core">
+      <HintPath>Lib\AlarmCenterGrpc.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="AlarmCenterGrpc.Proxy">
+      <HintPath>Lib\AlarmCenterGrpc.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="AlarmCenterGrpcService.Protos">
+      <HintPath>Lib\AlarmCenterGrpcService.Protos.dll</HintPath>
+    </Reference>
+    <Reference Include="GWDataCenter">
+      <HintPath>Lib\GWDataCenter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration.ConfigurationManager">
+      <HintPath>Lib\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
