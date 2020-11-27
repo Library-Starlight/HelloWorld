@@ -1,0 +1,27 @@
+syntax = "proto3";  //协议版本为 proto3 
+import "google/protobuf/empty.proto"; //需要使用空参数和空返回值时，需要使用这个默认的协议文件 
+import "proto/common.proto";  
+option csharp_namespace = "AlarmCenterGrpcServiceLibrary"; //命名空间
+
+package AlarmCenterGrpcServiceLibrary;	//包名
+
+// The greeting service definition.
+service Account { //服务名称
+	rpc Login (LoginRequestModel) returns (BaseResult);
+	rpc Login1 (LoginRequestModel) returns (StringData); 
+	rpc Logout (google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+
+//登录
+message LoginRequestModel{
+	string userName=1;
+	string userPsd=2;
+}
+//返回用户信息
+message UserModel{
+	string NickName=1;
+	string Token=2; 
+} 
+message StringData{
+	string Data=1;
+}

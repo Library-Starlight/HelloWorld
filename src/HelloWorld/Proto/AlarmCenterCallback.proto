@@ -1,0 +1,49 @@
+syntax = "proto3";  
+import "google/protobuf/empty.proto"; 
+import "proto/common.proto"; 
+import "google/protobuf/wrappers.proto";
+option csharp_namespace = "AlarmCenterGrpcServiceLibrary";  
+package AlarmCenterGrpcServiceLibrary;
+//消息回调接口
+service AlarmCenterCallback { 
+  rpc Listen (google.protobuf.Empty) returns (google.protobuf.Empty);   
+  rpc SetInterScreenID (IntegerDefine) returns (google.protobuf.Empty);
+  rpc SetGUID (StringResult) returns  (google.protobuf.Empty);
+  rpc SetUserNm (StringResult) returns  (google.protobuf.Empty);
+  rpc GetTotalEquipData (BoolDefine) returns (StringResult);
+  rpc GetTotalYCData (BoolDefine) returns (StringResult); 
+  rpc GetTotalYXData (BoolDefine) returns (StringResult);
+  rpc FirstGetRealEventItem (google.protobuf.Empty) returns (StringResult);
+  rpc GetRealEventItem (BoolDefine) returns (StringResult); 
+  rpc InterScreenOpenPage (ProtosEventArgs) returns  (stream OpenPageReply);
+  rpc ShowPage (ProtosEventArgs) returns  (stream ShowPageReply);
+  rpc ClosePage (ProtosEventArgs) returns  (stream ShowPageReply);
+  rpc Login (google.protobuf.Empty) returns  (stream LoginReply);    
+  rpc PushRealEventItem (google.protobuf.Empty) returns (stream StringResult);
+  rpc GetAddRealEventItem (google.protobuf.Empty) returns (StringResult);
+  rpc GetDelRealEventItem (google.protobuf.Empty) returns (StringResult); 
+}
+
+message RealByteReply{
+  ByteArrDefine result=1;
+} 
+message ProtosEventArgs{
+  string typeName=1;
+  string json=2; 
+  string args=3;
+} 
+message OpenPageReply{
+	string PageNm=1;
+	bool IsAutoOpen=2; 
+	bool DWAction=3;
+	string InfoConfig=4;
+	bool StopPageCycle=5;
+} 
+message LoginReply{
+	string ListCallBackData=1;
+	string ListCallBackPage=2;
+}
+message ShowPageReply{
+	string data=1;
+	bool showOrClose=2; 
+}

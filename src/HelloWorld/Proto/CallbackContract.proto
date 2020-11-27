@@ -1,0 +1,86 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto"; 
+import "proto/common.proto";
+option csharp_namespace = "AlarmCenterGrpcServiceLibrary"; 
+package AlarmCenterGrpcServiceLibrary; 
+// The greeting service definition.
+service CallbackContract { 
+	rpc ShowInfo (ShowInfoRequest) returns(stream google.protobuf.Empty);
+	rpc ShowLockSetParmMsg (ShowLockSetParmMsgRequest) returns(stream google.protobuf.Empty);
+	rpc ShowOrClosePage (ShowOrClosePageRequest) returns(stream google.protobuf.Empty);
+	rpc OpenPage4InterScreen (OpenPage4InterScreenRequest) returns(stream google.protobuf.Empty);
+	rpc GetAllPage (GetAllPageRequest) returns(stream google.protobuf.Empty);
+	rpc Action (ActionRequest) returns(stream BoolDefine);
+	rpc GetClientInfo (GetClientInfoRequest) returns(stream google.protobuf.Empty);
+}
+message ShowInfoRequest {
+  string BtnText = 1;
+  string Content = 2;
+  string TitleText = 3;
+  string o = 4; 
+}
+message ShowLockSetParmMsgRequest {
+  string Content=1; 
+  int32 iEquipNo=2;
+  int32 iSetNo=3; 
+  string value=4; 
+  string o=5;
+}
+message ShowOrClosePageRequest {
+  CallBackDataType Data=1; 
+  bool ShowOrClose=2;
+}
+message CallBackDataType{ 
+  int32 iEqpNo=1;
+  string Type=2; 
+  int32 iYcYxNo=3; 
+  bool isAlarm=4; 
+  string related_pic=5; 
+  string related_video=6; 
+  string ZiChanID=7; 
+  string PlanNo=8; 
+  string EvtMsg=9;
+}
+message OpenPage4InterScreenRequest {
+  string PageNm=1;
+  bool IsAutoOpen=2; 
+  bool DWAction=3;
+  string InfoConfig=4;
+  bool StopPageCycle=5;
+}
+message GetAllPageRequest { 
+  repeated CallBackDataType L1=1; 
+  repeated CallBackPageType L2=2;
+}
+message ActionRequest {
+  string o=1;
+  WcfCallBackEventType type=2;
+  enum WcfCallBackEventType{
+        KickClient = 0;
+        ShowMsg = 1;
+        ShowLockSetParmMsg = 2;
+        VOpenPage = 3;
+        NotifyOffLine = 4;
+        NotifyRoleOffLine = 5;
+    }
+}
+message GetClientInfoRequest {
+  repeated szWCFClientInfo ClientInfoList=1;
+}
+message szWCFClientInfo{
+  string Instance_GUID =1;
+  string ClientUserNm =2;
+  string ClientIP =3;
+  int32 ClientPort=4;
+}
+
+message CallBackPageType{
+	string related_pic=1;
+	string related_video=2;
+	string ZiChanID=3;
+	repeated CallBackPlanType PlanNo=4;
+	message CallBackPlanType{
+		 string PlanNo=1;
+		 string EvtMsg=2;
+	}
+}

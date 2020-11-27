@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option csharp_namespace = "AlarmCenterGrpcServiceLibrary";
+
+package AlarmCenterGrpcServiceLibrary;
+import "proto/common.proto";  
+import "google/protobuf/empty.proto";  
+service Tool { 
+	rpc Encrypt (StringResult) returns (StringResult); 
+	rpc Decrypt (StringResult) returns (StringResult);  
+} 

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option csharp_namespace = "AlarmCenterGrpcServiceLibrary";
+
+package AlarmCenterGrpcServiceLibrary;
+import "common.proto";  
+import "google/protobuf/empty.proto";  
+service DeviceContract { 
+	rpc UploadDeviceDll (DeviceDllInfo) returns (StringResult); 
+} 
+message DeviceDllInfo{
+	repeated bytes data=1;
+	string FileName=2;
+} 

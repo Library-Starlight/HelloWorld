@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option csharp_namespace = "AlarmCenterGrpcServiceLibrary";
+
+package AlarmCenterGrpcServiceLibrary;
+import "proto/common.proto";  
+import "google/protobuf/empty.proto"; 
+
+
+// The greeting service definition.
+service SystemManage { 
+	//新增角色
+	rpc AddRole (StringResult) returns (BoolDefine); 
+	//删除角色
+	rpc DeleteRole (StringResult) returns (BoolDefine); 
+	//获取角色列表
+	rpc GetRoleEntities (StringResult) returns (BaseResult); 
+	///修改角色
+	rpc ModifyRole (StringResult) returns (BoolDefine); 
+	//获取用户列表
+	rpc GetUserEntities (StringResult) returns (BaseResult); 
+		//获取用户
+	rpc GetWebUser (StringResult) returns (StringResult); 
+	//新增用户
+	rpc AddUserEntity (StringResult) returns (BoolDefine); 
+	//删除用户
+	rpc DeleteUserEntity (IntegerDefine) returns (BoolDefine); 
+	//修改用户
+	rpc ModifyUserEntity (StringResult) returns (BoolDefine); 
+	///修改密码
+	rpc RevisePassword (StringResult) returns(BoolDefine);
+  
+} 

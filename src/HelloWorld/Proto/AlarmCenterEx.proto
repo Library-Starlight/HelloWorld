@@ -1,0 +1,27 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";    
+import "proto/common.proto";
+option csharp_namespace = "AlarmCenterGrpcServiceLibrary";
+
+package AlarmCenterGrpcServiceLibrary; 
+// The greeting service definition.
+service AlarmCenterEx {
+  // Sends a greeting
+	rpc Login (LoginModel) returns (google.protobuf.Empty); 
+	rpc SetParmArrayWaitReturn (SetParmArrayWaitReturnRequest) returns (SetParmArrayWaitReturnReply); 
+} 
+
+
+message SetParmArrayWaitReturnRequest{
+	repeated SetParmItem Items=1;
+	string strUser=2;
+}
+message SetParmItem{
+  int32 iEquipNo=1;
+  int32 iSetNo=2;
+  string strValue=3;
+  bool bShowDlg=4;
+}
+message SetParmArrayWaitReturnReply{
+	repeated SetParmItem Items=1;
+} 
